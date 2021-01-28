@@ -95,3 +95,4 @@ def test(String environment){
         sh "docker rm chrome"
         sh "docker rm selenium_hub"
 }
+}
