@@ -66,7 +66,7 @@ def deploy(String environment){
     }
     catch(Exception e)
     {
-        sh 'bash send_notification.sh "${environment} deployment" 1'
+        sh "bash send_notification.sh '${environment} deployment' 1"
     }
 }
 
@@ -81,12 +81,12 @@ def test(String environment){
        -e HUB_PORT_4444_TCP_PORT=4444 -e NODE_MAX_SESSION=2 -e NODE_MAX_INSTANCES=2 -v /dev/shm:/dev/shm selenium/node-firefox"
         sh "docker run --net test-automation-setup -t -d --name mvn_tests_${environment} \
         -v $PWD/test-output:/docker/test-output vapnek/mvn_tests"
-        sh 'docker exec mvn_tests_${environment} bash -c "mvn clean test -Dbrowser=chrome -DgridURL=selenium_hub:4444 && mvn io.qameta.allure:allure-maven:report && rm -rf test-output/* && cp -r target/site/allure-maven-plugin test-output"'
-        sh 'bash send_notification.sh "Testing on ${environment}" 0'
+        sh "docker exec mvn_tests_${environment} mvn clean test -Dbrowser=chrome -DgridURL=selenium_hub:4444 && mvn io.qameta.allure:allure-maven:report && rm -rf test-output/* && cp -r target/site/allure-maven-plugin test-output"
+        sh "bash send_notification.sh 'Testing on ${environment}' 0"
     }
     catch(Exception e)
     {
-        sh 'bash send_notification.sh "Testing on ${environment}" 1'
+        sh "bash send_notification.sh 'Testing on ${environment}' 1"
     }
     finally{
         sh "docker stop mvn_tests_${environment}"
