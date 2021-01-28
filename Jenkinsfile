@@ -49,7 +49,7 @@ def build(){
      sh "sleep 5"
      sh "bash send_notification.sh 'Building application' 0"
     }
-    catch{
+    catch(){
      sh "bash send_notification.sh 'Building application' 1"
     }
 }
@@ -61,7 +61,7 @@ def deploy(String environment){
     build job: "ui-automation", parameters: [string(name: "ENVIRONMENT", value: "${environment}")]
     sh "bash send_notification.sh '${environment} deployment' 0"
     }
-    catch
+    catch()
     {
         sh "bash send_notification.sh '${environment} deployment' 1"
     }
@@ -81,7 +81,7 @@ def test(String environment){
         sh "docker exec mvn_tests_${environment} bash -c 'mvn clean test -Dbrowser=chrome -DgridURL=selenium_hub:4444 && mvn io.qameta.allure:allure-maven:report && rm -rf test-output/* && cp -r target/site/allure-maven-plugin test-output'"
         sh "bash send_notification.sh 'Testing on ${environment}' 0"
     }
-    catch
+    catch()
     {
         sh "bash send_notification.sh 'Testing on ${environment}' 1"
     }
