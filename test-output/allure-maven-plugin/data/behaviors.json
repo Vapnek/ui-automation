@@ -1,0 +1,37 @@
+{
+  "uid" : "b1a8273437954620fa374b796ffaacdd",
+  "children" : [ {
+    "name" : "Dynamic element tests",
+    "children" : [ {
+      "name" : "Dynamic elements",
+      "children" : [ {
+        "name" : "Dynamic elements",
+        "uid" : "e2a439b824c91ff1",
+        "parentUid" : "5d227a0b15e506eaa4e33dc69b7414b3",
+        "status" : "passed",
+        "time" : {
+          "start" : 1611872744791,
+          "stop" : 1611872758218,
+          "duration" : 13427
+        },
+        "flaky" : false,
+        "parameters" : [ "/dynamic_loading/1" ]
+      }, {
+        "name" : "Dynamic elements",
+        "uid" : "2bd0dc4a4f06b546",
+        "parentUid" : "5d227a0b15e506eaa4e33dc69b7414b3",
+        "status" : "passed",
+        "time" : {
+          "start" : 1611872744795,
+          "stop" : 1611872758677,
+          "duration" : 13882
+        },
+        "flaky" : false,
+        "parameters" : [ "/dynamic_loading/2" ]
+      } ],
+      "uid" : "5d227a0b15e506eaa4e33dc69b7414b3"
+    } ],
+    "uid" : "0972a5a36d52d49862bbc2bd9dadcbce"
+  } ],
+  "name" : "behaviors"
+}

@@ -1,0 +1,63 @@
+version: '3.8'
+services: 
+  selenium_hub:
+    image: selenium/hub
+    container_name: selenium_hub
+    expose:
+      - "4444"
+    networks:
+      - test-automation-setup
+
+  chrome:
+    image: selenium/node-chrome
+    container_name: chrome
+    environment: 
+      HUB_PORT_4444_TCP_ADDR: selenium_hub
+      HUB_PORT_4444_TCP_PORT: 4444
+      NODE_MAX_SESSION: 2
+      NODE_MAX_INSTANCES: 2
+    volumes:
+     - /dev/shm:/dev/shm
+    networks:
+      - test-automation-setup
+    links:
+      - selenium_hub
+    depends_on: 
+      - selenium_hub
+
+  firefox:
+    image: selenium/node-firefox
+    container_name: firefox
+    environment: 
+      HUB_PORT_4444_TCP_ADDR: selenium_hub
+      HUB_PORT_4444_TCP_PORT: 4444
+      NODE_MAX_SESSION: 2
+      NODE_MAX_INSTANCES: 2
+    volumes:
+     - /dev/shm:/dev/shm
+    networks:
+      - test-automation-setup
+    links:
+      - selenium_hub
+    depends_on: 
+      - selenium_hub
+
+  mvn-tests:
+    build: .
+    container_name: mvn_tests
+    networks:
+      - test-automation-setup
+    volumes:
+      - $PWD/test-output:/docker/test-output
+    depends_on: 
+      - selenium_hub
+      - chrome
+      - firefox 
+    command: bash -c "mvn clean test -Dbrowser=chrome -DgridURL=selenium_hub:4444 && mvn io.qameta.allure:allure-maven:report && rm -rf test-output/* && cp -r target/site/allure-maven-plugin test-output"
+
+networks: 
+  test-automation-setup: 
+    external: true
+ 
+
+ 

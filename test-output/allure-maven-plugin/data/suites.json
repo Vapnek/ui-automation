@@ -1,0 +1,33 @@
+{
+  "uid" : "98d3104e051c652961429bf95fa0b5d6",
+  "children" : [ {
+    "name" : "Dynamic element tests",
+    "children" : [ {
+      "name" : "Dynamic elements",
+      "uid" : "e2a439b824c91ff1",
+      "parentUid" : "ed673644e9f4a4cdc22a42c4835406d7",
+      "status" : "passed",
+      "time" : {
+        "start" : 1611872744791,
+        "stop" : 1611872758218,
+        "duration" : 13427
+      },
+      "flaky" : false,
+      "parameters" : [ "/dynamic_loading/1" ]
+    }, {
+      "name" : "Dynamic elements",
+      "uid" : "2bd0dc4a4f06b546",
+      "parentUid" : "ed673644e9f4a4cdc22a42c4835406d7",
+      "status" : "passed",
+      "time" : {
+        "start" : 1611872744795,
+        "stop" : 1611872758677,
+        "duration" : 13882
+      },
+      "flaky" : false,
+      "parameters" : [ "/dynamic_loading/2" ]
+    } ],
+    "uid" : "ed673644e9f4a4cdc22a42c4835406d7"
+  } ],
+  "name" : "suites"
+}

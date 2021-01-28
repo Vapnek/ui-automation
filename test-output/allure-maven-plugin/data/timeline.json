@@ -1,0 +1,41 @@
+{
+  "uid" : "ab17fc5a4eb3bca4b216b548c7f9fcbc",
+  "children" : [ {
+    "name" : "c62990b14eb6",
+    "children" : [ {
+      "name" : "52@c62990b14eb6.PoolService-0(11)",
+      "children" : [ {
+        "name" : "Dynamic elements",
+        "uid" : "e2a439b824c91ff1",
+        "parentUid" : "8b7e94dafa0753450f2db11501a4ace5",
+        "status" : "passed",
+        "time" : {
+          "start" : 1611872744791,
+          "stop" : 1611872758218,
+          "duration" : 13427
+        },
+        "flaky" : false,
+        "parameters" : [ "/dynamic_loading/1" ]
+      } ],
+      "uid" : "8b7e94dafa0753450f2db11501a4ace5"
+    }, {
+      "name" : "52@c62990b14eb6.PoolService-1(12)",
+      "children" : [ {
+        "name" : "Dynamic elements",
+        "uid" : "2bd0dc4a4f06b546",
+        "parentUid" : "c6d59c95c5e9c61858dbb6611b34e69d",
+        "status" : "passed",
+        "time" : {
+          "start" : 1611872744795,
+          "stop" : 1611872758677,
+          "duration" : 13882
+        },
+        "flaky" : false,
+        "parameters" : [ "/dynamic_loading/2" ]
+      } ],
+      "uid" : "c6d59c95c5e9c61858dbb6611b34e69d"
+    } ],
+    "uid" : "9b753fb66fd8b21e0d10aad4741f066a"
+  } ],
+  "name" : "timeline"
+}

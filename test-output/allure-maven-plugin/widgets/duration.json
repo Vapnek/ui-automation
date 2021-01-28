@@ -1,0 +1,21 @@
+[ {
+  "uid" : "e2a439b824c91ff1",
+  "name" : "Dynamic elements",
+  "time" : {
+    "start" : 1611872744791,
+    "stop" : 1611872758218,
+    "duration" : 13427
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "2bd0dc4a4f06b546",
+  "name" : "Dynamic elements",
+  "time" : {
+    "start" : 1611872744795,
+    "stop" : 1611872758677,
+    "duration" : 13882
+  },
+  "status" : "passed",
+  "severity" : "normal"
+} ]

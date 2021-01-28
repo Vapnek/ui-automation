@@ -1,0 +1,33 @@
+{
+  "uid" : "83edc06c07f9ae9e47eb6dd1b683e4e2",
+  "children" : [ {
+    "name" : "src.test.resources.features.dynamic_elements_feature.Dynamic element tests",
+    "children" : [ {
+      "name" : "Dynamic elements",
+      "uid" : "e2a439b824c91ff1",
+      "parentUid" : "9f92b8018e4b3a4a864ee60af00774e3",
+      "status" : "passed",
+      "time" : {
+        "start" : 1611872744791,
+        "stop" : 1611872758218,
+        "duration" : 13427
+      },
+      "flaky" : false,
+      "parameters" : [ "/dynamic_loading/1" ]
+    }, {
+      "name" : "Dynamic elements",
+      "uid" : "2bd0dc4a4f06b546",
+      "parentUid" : "9f92b8018e4b3a4a864ee60af00774e3",
+      "status" : "passed",
+      "time" : {
+        "start" : 1611872744795,
+        "stop" : 1611872758677,
+        "duration" : 13882
+      },
+      "flaky" : false,
+      "parameters" : [ "/dynamic_loading/2" ]
+    } ],
+    "uid" : "src.test.resources.features.dynamic_elements_feature.Dynamic element tests"
+  } ],
+  "name" : "packages"
+}

@@ -1,0 +1,134 @@
+{
+  "uid" : "e2a439b824c91ff1",
+  "name" : "Dynamic elements",
+  "fullName" : "Dynamic element tests: Dynamic elements",
+  "historyId" : "39e1eae21faad34ee2dfd2e78afc63e7",
+  "time" : {
+    "start" : 1611872744791,
+    "stop" : 1611872758218,
+    "duration" : 13427
+  },
+  "status" : "passed",
+  "flaky" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Given  I open page \"/dynamic_loading/1\"",
+      "time" : {
+        "start" : 1611872744803,
+        "stop" : 1611872751933,
+        "duration" : 7130
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "When  I click button with text - \"Start\"",
+      "time" : {
+        "start" : 1611872751933,
+        "stop" : 1611872753000,
+        "duration" : 1067
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Then  I wait for result with text - \"Hello World!\"",
+      "time" : {
+        "start" : 1611872753003,
+        "stop" : 1611872758012,
+        "duration" : 5009
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "stepdefs.Hooks.tearDown(io.cucumber.java.Scenario)",
+    "time" : {
+      "start" : 1611872758027,
+      "stop" : 1611872758185,
+      "duration" : 158
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "host",
+    "value" : "c62990b14eb6"
+  }, {
+    "name" : "thread",
+    "value" : "52@c62990b14eb6.PoolService-0(11)"
+  }, {
+    "name" : "feature",
+    "value" : "Dynamic element tests"
+  }, {
+    "name" : "story",
+    "value" : "Dynamic elements"
+  }, {
+    "name" : "suite",
+    "value" : "Dynamic element tests"
+  }, {
+    "name" : "testClass",
+    "value" : "Dynamic elements"
+  }, {
+    "name" : "framework",
+    "value" : "cucumber4jvm"
+  }, {
+    "name" : "language",
+    "value" : "java"
+  }, {
+    "name" : "gherkin_uri",
+    "value" : "file:///docker/src/test/resources/features/dynamic_elements.feature"
+  }, {
+    "name" : "package",
+    "value" : "src.test.resources.features.dynamic_elements_feature.Dynamic element tests"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "uri",
+    "value" : "/dynamic_loading/1"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "e2a439b824c91ff1.json",
+  "parameterValues" : [ "/dynamic_loading/1" ]
+}
