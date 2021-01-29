@@ -37,23 +37,19 @@ pipeline{
             }
         }
     }
-     post {
-                always {
-                        echo "This is always section"
-                       }
-                success {
-                        sh "bash send_notification.sh '${environment} deployment' 0"
-                        }
-                failure {
-                        sh "bash send_notification.sh '${environment} deployment' 1"
-                        }
-             }
 }
 
 
 def deploy(String environment){
     echo "Deployment to ${environment} in progress"
+    try{
     build job: "ui-automation", parameters: [string(name: "ENVIRONMENT", value: "${environment}")]
+    echo "bash send_notification.sh '${environment} deployment' 0"
+    }
+    catch()
+    {
+      sh "bash send_notification.sh '${environment} deployment' 1"
+    }
 }
 
 def test(String environment){
