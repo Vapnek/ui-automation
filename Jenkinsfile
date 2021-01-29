@@ -53,19 +53,19 @@ pipeline{
 
 def deploy(String environment){
     echo "Deployment to ${environment} in progress"
-    build job: "test_automation_solution", parameters: [string(name: "ENVIRONMENT", value: "${environment}")]
+    build job: "ui-automation", parameters: [string(name: "ENVIRONMENT", value: "${environment}")]
     
 }
 
 def test(String environment){
     echo "Running tests on ${environment}"
     try{
-        sh "docker run --net test-automation-setup -d  -p 4444:4444 --name selenium_hub selenium/hub"
-        sh "docker run --net test-automation-setup -d --name chrome -e HUB_PORT_4444_TCP_ADDR=selenium_hub \
+        sh "docker run --net test-automation-setup -d -t -p 4444:4444 --name selenium_hub selenium/hub"
+        sh "docker run --net test-automation-setup -d -t --name chrome -e HUB_PORT_4444_TCP_ADDR=selenium_hub \
        -e HUB_PORT_4444_TCP_PORT=4444 -e NODE_MAX_SESSION=2 -e NODE_MAX_INSTANCES=2 -v /dev/shm:/dev/shm selenium/node-chrome"
-        sh "docker run --net test-automation-setup -d --name firefox -e HUB_PORT_4444_TCP_ADDR=selenium_hub \
+        sh "docker run --net test-automation-setup -d -t --name firefox -e HUB_PORT_4444_TCP_ADDR=selenium_hub \
        -e HUB_PORT_4444_TCP_PORT=4444 -e NODE_MAX_SESSION=2 -e NODE_MAX_INSTANCES=2 -v /dev/shm:/dev/shm selenium/node-firefox"
-        sh "docker run --net test-automation-setup -d --name mvn_tests_${environment} \
+        sh "docker run --net test-automation-setup -d -t --name mvn_tests_${environment} \
         -v $PWD/test-output:/docker/test-output vapnek/mvn_tests \
         mvn clean test -Dbrowser=chrome -DgridURL=selenium_hub:4444 && mvn io.qameta.allure:allure-maven:report && rm -rf test-output/* && cp -r target/site/allure-maven-plugin test-output"
         sh "bash send_notification.sh 'Testing on ${environment}' 0"
