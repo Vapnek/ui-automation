@@ -42,10 +42,10 @@ pipeline{
     }
     post {
                 success {
-                        echo "Stage was successfull on ${environment}"
+                        echo "Stage was successfull!"
                         }
                 failure {
-                        echo "Stage failed on ${environment}"
+                        echo "Stage failed!"
                         }
              }
 }
