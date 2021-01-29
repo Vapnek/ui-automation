@@ -44,12 +44,13 @@ pipeline{
 }
 
 def build(){
- try{
-        echo "Building application"
+    echo "Building application"
+    try{
+        
         sh "sleep 5"
         echo "bash send_notification.sh '${environment} deployment' 0"
     }
- catch(Exception e)
+    catch(Exception e)
     {
       sh "bash send_notification.sh '${environment} deployment' 1"
     }
@@ -57,13 +58,14 @@ def build(){
 
 
 def deploy(String environment){
-    try{
     echo "Deployment to ${environment} in progress"
-    echo "bash send_notification.sh '${environment} deployment' 0"
+    try{
+        build job: "ui-tests", parameters: [string(name: "ENVIRONMENT", value: "${environment}")]
+        echo "bash send_notification.sh '${environment} deployment' 0"
     }  
     catch(Exception e)
     {
-      sh "bash send_notification.sh '${environment} deployment' 1"
+        sh "bash send_notification.sh '${environment} deployment' 1"
     }
 }
 
