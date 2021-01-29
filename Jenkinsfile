@@ -7,9 +7,8 @@ pipeline{
     {
         stage('build'){
             steps {
-               script{
-                    build()
-                }    
+                echo "Building application"
+                sh "sleep 5"
             }
         }
         stage('deploy-staging') {
@@ -40,19 +39,6 @@ pipeline{
                 }
             }
         }
-    }
-}
-
-def build(){
-    echo "Building application"
-    try{
-        
-        sh "sleep 5"
-        echo "bash send_notification.sh '${environment} deployment' 0"
-    }
-    catch(Exception e)
-    {
-      sh "bash send_notification.sh '${environment} deployment' 1"
     }
 }
 
