@@ -36,7 +36,8 @@ pipeline{
                 }
             }
         }
-        post {
+    }
+     post {
                 always {
                         echo "This is always section"
                        }
@@ -47,7 +48,6 @@ pipeline{
                         sh "bash send_notification.sh '${environment} deployment' 1"
                         }
              }
-    }
 }
 
 
