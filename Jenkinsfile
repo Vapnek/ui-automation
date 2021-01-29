@@ -69,7 +69,7 @@ def deploy(String environment){
 
 def test(String environment){
     echo "Running tests on ${environment}"
-    
+    sh "docker rm -f bdf82c3337b8de400c130109d05d514db08de77bd75ef7ec8beefae18f258b43"
     try{
         sh "docker run --net test-automation-setup -d -t -p 4444:4444 --name selenium_hub selenium/hub"
         sh "docker run --net test-automation-setup -d -t --name chrome -e HUB_PORT_4444_TCP_ADDR=selenium_hub \
