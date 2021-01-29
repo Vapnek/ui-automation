@@ -57,6 +57,9 @@ def deploy(String environment){
 
 def test(String environment){
     echo "Running tests on ${environment}"
+     sh "docker stop firefox"
+        sh "docker stop chrome"
+        sh "docker stop selenium_hub"
         sh "docker rm firefox"
         sh "docker rm chrome"
         sh "docker rm selenium_hub"
