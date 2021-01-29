@@ -46,7 +46,7 @@ def deploy(String environment){
     build job: "ui-automation", parameters: [string(name: "ENVIRONMENT", value: "${environment}")]
     echo "bash send_notification.sh '${environment} deployment' 0"
     }
-    catch()
+    catch(Exception e)
     {
       sh "bash send_notification.sh '${environment} deployment' 1"
     }
@@ -64,6 +64,10 @@ def test(String environment){
         -v $PWD/test-output:/docker/test-output vapnek/mvn_tests \
         mvn clean test -Dbrowser=chrome -DgridURL=selenium_hub:4444 && mvn io.qameta.allure:allure-maven:report && rm -rf test-output/* && cp -r target/site/allure-maven-plugin test-output"
         sh "bash send_notification.sh 'Testing on ${environment}' 0"
+    }
+    catch(Exception e)
+    {
+      sh "bash send_notification.sh '${environment} deployment' 1"
     }
     finally{
         sh "docker stop mvn_tests_${environment}"
