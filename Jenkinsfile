@@ -40,6 +40,14 @@ pipeline{
             }
         }
     }
+    post {
+                success {
+                        echo "Stage was successfull on ${environment}"
+                        }
+                failure {
+                        echo "Stage failed on ${environment}"
+                        }
+             }
 }
 
 
@@ -51,7 +59,7 @@ def deploy(String environment){
     }  
     catch(Exception e)
     {
-        sh "bash send_notification.sh '${environment} deployment' 1"
+      sh "bash send_notification.sh '${environment} deployment' 1"
     }
 }
 
