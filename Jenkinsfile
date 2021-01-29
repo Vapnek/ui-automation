@@ -57,7 +57,7 @@ def deploy(String environment){
 
 def test(String environment){
     echo "Running tests on ${environment}"
-    sh "docker container prune -y"
+    sh "docker container prune -f"
     try{
         sh "docker run --net test-automation-setup -d -t -p 4444:4444 --name selenium_hub selenium/hub"
         sh "docker run --net test-automation-setup -d -t --name chrome -e HUB_PORT_4444_TCP_ADDR=selenium_hub \
@@ -77,6 +77,6 @@ def test(String environment){
         sh "docker stop firefox"
         sh "docker stop chrome"
         sh "docker stop selenium_hub"
-        sh "docker container prune -y"
+        sh "docker container prune -f"
 }
 }
