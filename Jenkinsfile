@@ -55,7 +55,7 @@ def deploy(String environment){
     echo "Deployment to ${environment} in progress"
     try{
         build job: "ui-tests", parameters: [string(name: "ENVIRONMENT", value: "${environment}")]
-        sh "bash send_notification.sh '${environment} deployment' 0"
+        sh "bash send_notification.sh 'Deployment on ${environment}' 0"
     }  
     catch(Exception e)
     {
