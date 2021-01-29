@@ -54,7 +54,6 @@ pipeline{
 def deploy(String environment){
     echo "Deployment to ${environment} in progress"
     build job: "ui-automation", parameters: [string(name: "ENVIRONMENT", value: "${environment}")]
-    
 }
 
 def test(String environment){
