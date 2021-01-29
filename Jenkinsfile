@@ -57,7 +57,6 @@ def deploy(String environment){
 
 def test(String environment){
     echo "Running tests on ${environment}"
-     sh "docker rm mvn_tests_${environment}"
         sh "docker rm firefox"
         sh "docker rm chrome"
         sh "docker rm selenium_hub"
