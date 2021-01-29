@@ -1,11 +1,15 @@
 pipeline{
     agent any
+    triggers {
+        pollSCM('*/1 * * * *')
+    }
     stages
     {
         stage('build'){
             steps {
-                   echo "Building application"
-                   sh "sleep 5"
+               script{
+                    build()
+                }    
             }
         }
         stage('deploy-staging') {
@@ -39,13 +43,24 @@ pipeline{
     }
 }
 
+def build(){
+ try{
+        echo "Building application"
+        sh "sleep 5"
+        echo "bash send_notification.sh '${environment} deployment' 0"
+    }
+ catch(Exception e)
+    {
+      sh "bash send_notification.sh '${environment} deployment' 1"
+    }
+}
+
 
 def deploy(String environment){
-    echo "Deployment to ${environment} in progress"
     try{
-    build job: "ui-automation", parameters: [string(name: "ENVIRONMENT", value: "${environment}")]
+    echo "Deployment to ${environment} in progress"
     echo "bash send_notification.sh '${environment} deployment' 0"
-    }
+    }  
     catch(Exception e)
     {
       sh "bash send_notification.sh '${environment} deployment' 1"
@@ -61,8 +76,7 @@ def test(String environment){
         sh "docker run --net test-automation-setup -d -t --name firefox -e HUB_PORT_4444_TCP_ADDR=selenium_hub \
        -e HUB_PORT_4444_TCP_PORT=4444 -e NODE_MAX_SESSION=2 -e NODE_MAX_INSTANCES=2 -v /dev/shm:/dev/shm selenium/node-firefox"
         sh "docker run --net test-automation-setup -d -t --name mvn_tests_${environment} \
-        -v $PWD/test-output:/docker/test-output vapnek/mvn_tests \
-        mvn clean test -Dbrowser=chrome -DgridURL=selenium_hub:4444 && mvn io.qameta.allure:allure-maven:report && rm -rf test-output/* && cp -r target/site/allure-maven-plugin test-output"
+        mvn clean test -Dbrowser=chrome -DgridURL=selenium_hub:4444"
         sh "bash send_notification.sh 'Testing on ${environment}' 0"
     }
     catch(Exception e)
@@ -74,9 +88,9 @@ def test(String environment){
         sh "docker stop firefox"
         sh "docker stop chrome"
         sh "docker stop selenium_hub"
-        sh "docker rm mvn_tests_${environment}"
-        sh "docker rm firefox"
-        sh "docker rm chrome"
-        sh "docker rm selenium_hub"
+        sh "docker rm -f mvn_tests_${environment}"
+        sh "docker rm -f firefox"
+        sh "docker rm -f chrome"
+        sh "docker rm -f selenium_hub"
 }
 }
