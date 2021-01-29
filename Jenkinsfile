@@ -42,7 +42,7 @@ pipeline{
     }
     post {
                 success {
-                        echo "Stage was successfull!"
+                        echo "Build was successfull!"
                         }
                 failure {
                         echo "Stage failed!"
@@ -55,11 +55,11 @@ def deploy(String environment){
     echo "Deployment to ${environment} in progress"
     try{
         build job: "ui-tests", parameters: [string(name: "ENVIRONMENT", value: "${environment}")]
-        echo "bash send_notification.sh '${environment} deployment' 0"
+        sh "bash send_notification.sh '${environment} deployment' 0"
     }  
     catch(Exception e)
     {
-      sh "bash send_notification.sh '${environment} deployment' 1"
+        sh "bash send_notification.sh '${environment} deployment' 1"
     }
 }
 

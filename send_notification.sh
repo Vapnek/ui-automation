@@ -4,13 +4,15 @@
 COMPONENT=$1
 STATUS=$2
 
-echo $STATUS
+#echo $STATUS
 
 # Default message
-MESSAGE=""$COMPONENT" failed :no_entry:"
+MESSAGE=""$COMPONENT" failed!"
 if [ $STATUS = 0 ]; then
-    MESSAGE=""$COMPONENT" passed :white_check_mark:"
+    MESSAGE=""$COMPONENT" passed!"
 fi
+
+echo $MESSAGE
 
 # Send notification
 curl -X POST \
