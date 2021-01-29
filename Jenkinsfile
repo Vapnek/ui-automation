@@ -4,10 +4,8 @@ pipeline{
     {
         stage('build'){
             steps {
-                script
-                {
-                    build()
-                }
+                   echo "Building application"
+                   sh "sleep 5"
             }
         }
         stage('deploy-staging') {
@@ -38,33 +36,25 @@ pipeline{
                 }
             }
         }
+        post {
+                always {
+                        echo "This is always section"
+                       }
+                success {
+                        sh "bash send_notification.sh '${environment} deployment' 0"
+                        }
+                failure {
+                        sh "bash send_notification.sh '${environment} deployment' 1"
+                        }
+             }
     }
 }
 
-
-def build(){
-    echo "Building application"
-
-    try{
-     sh "sleep 5"
-     sh "bash send_notification.sh 'Building application' 0"
-    }
-    catch(Exception e){
-     sh "bash send_notification.sh 'Building application' 1"
-    }
-}
 
 def deploy(String environment){
     echo "Deployment to ${environment} in progress"
-
-    try{
     build job: "test_automation_solution", parameters: [string(name: "ENVIRONMENT", value: "${environment}")]
-    sh "bash send_notification.sh '${environment} deployment' 0"
-    }
-    catch(Exception e)
-    {
-        sh "bash send_notification.sh '${environment} deployment' 1"
-    }
+    
 }
 
 def test(String environment){
@@ -79,10 +69,6 @@ def test(String environment){
         -v $PWD/test-output:/docker/test-output vapnek/mvn_tests \
         mvn clean test -Dbrowser=chrome -DgridURL=selenium_hub:4444 && mvn io.qameta.allure:allure-maven:report && rm -rf test-output/* && cp -r target/site/allure-maven-plugin test-output"
         sh "bash send_notification.sh 'Testing on ${environment}' 0"
-    }
-    catch(Exception e)
-    {
-        sh "bash send_notification.sh 'Testing on ${environment}' 1"
     }
     finally{
         sh "docker stop mvn_tests_${environment}"
